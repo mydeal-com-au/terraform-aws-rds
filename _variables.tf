@@ -8,9 +8,15 @@ variable "environment_name" {
   description = "Environment name to use as a prefix to this DB"
 }
 
+variable "db_type" {
+  type = string
+  description = "Valid Values are: RDS/Aurora or Serverless"
+}
+
 variable "allow_security_group_ids" {
   type = list
   description = "List of Security Group IDs to allow connection to this DB"
+  default = []
 }
 
 variable "allow_cidrs" {
@@ -39,6 +45,7 @@ variable "engine" {
 
 variable "engine_version" {
   type = string
+  default = ""
 }
 
 variable "port" {
@@ -54,14 +61,33 @@ variable "apply_immediately" {
   default = true
 }
 
+variable "skip_final_snapshot"{
+  type = bool
+  default = false
+}
+
+
 variable "snapshot_identifier" {
   type = string
   default = ""
 }
 
+variable "identifier" {
+  type = string
+  default = ""
+}
+
+variable "database_name" {
+  description = "Database Name"
+  type = string
+  default = ""
+}
+
+
 variable "allocated_storage" {
   type = number
   description = "Storage size in GB"
+  default = null
 }
 
 variable "storage_encrypted" {
@@ -85,5 +111,19 @@ variable "vpc_id" {
 }
 
 variable "db_subnet_group_id" {
+  description = "RDS Subnet Group Name"
   type = string
+}
+
+
+variable "db_subnet_group_subnet_ids" {
+  type = list
+  description = "List of Subnet IDs for the RDS Subnet Group"
+  default = []
+}
+
+variable "preferred_backup_window" {
+  description = "Preferred Backup Window"
+  type = string
+  default = "07:00-09:00"
 }

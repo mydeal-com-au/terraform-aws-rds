@@ -13,26 +13,26 @@ resource "aws_ssm_parameter" "rds_db_user" {
   name        = "/rds/${var.environment_name}-${var.name}/USER"
   description = "RDS User"
   type        = "SecureString"
-  value       = aws_db_instance.rds_db.username
+  value = var.db_type == "rds" ? aws_db_instance.rds_db[0].username : aws_rds_cluster.aurora_cluster[0].master_username
 }
 
 resource "aws_ssm_parameter" "rds_endpoint" {
   name        = "/rds/${var.environment_name}-${var.name}/ENDPOINT"
   description = "RDS Endpoint"
   type        = "String"
-  value       = aws_db_instance.rds_db.endpoint
+  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].endpoint : aws_rds_cluster.aurora_cluster[0].endpoint
 }
 
-resource "aws_ssm_parameter" "rds_db_address" {
-  name        = "/rds/${var.environment_name}-${var.name}/HOST"
-  description = "RDS Hostname"
-  type        = "String"
-  value       = aws_db_instance.rds_db.address
-}
+#resource "aws_ssm_parameter" "rds_db_address" {
+#  name        = "/rds/${var.environment_name}-${var.name}/HOST"
+#  description = "RDS Hostname"
+#  type        = "String"
+#  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].address : aws_rds_cluster.aurora_cluster[0].address
+#}
 
 resource "aws_ssm_parameter" "rds_db_name" {
   name        = "/rds/${var.environment_name}-${var.name}/NAME"
   description = "RDS DB Name"
   type        = "String"
-  value       = aws_db_instance.rds_db.name
+  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].name : aws_rds_cluster.aurora_cluster[0].database_name
 }
