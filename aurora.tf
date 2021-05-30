@@ -1,8 +1,8 @@
 resource "aws_rds_cluster" "aurora_cluster" {
-  count = "${var.db_type == "aurora" ? 1 : 0}"
-  cluster_identifier      = var.identifier
-  engine                  = var.engine
-  engine_version          = var.engine_version
+  count              = var.db_type == "aurora" ? 1 : 0
+  cluster_identifier = var.identifier
+  engine             = var.engine
+  engine_version     = var.engine_version
   #availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
   database_name           = var.database_name
   master_username         = var.user
@@ -14,7 +14,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  count = "${var.db_type == "aurora" ? 2 : 0}"
+  count              = var.db_type == "aurora" ? 2 : 0
   identifier         = "${var.identifier}-${count.index}"
   cluster_identifier = aws_rds_cluster.aurora_cluster[0].id
   instance_class     = var.instance_class

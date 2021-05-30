@@ -13,7 +13,7 @@ resource "aws_ssm_parameter" "rds_db_user" {
   name        = "/rds/${var.environment_name}-${var.name}/USER"
   description = "RDS User"
   type        = "SecureString"
-  value = var.db_type == "rds" ? aws_db_instance.rds_db[0].username : aws_rds_cluster.aurora_cluster[0].master_username
+  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].username : aws_rds_cluster.aurora_cluster[0].master_username
 }
 
 resource "aws_ssm_parameter" "rds_endpoint" {

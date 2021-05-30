@@ -1,37 +1,37 @@
 variable "name" {
-  type = string
+  type        = string
   description = "Name of this RDS Database"
 }
 
 variable "environment_name" {
-  type = string
+  type        = string
   description = "Environment name to use as a prefix to this DB"
 }
 
 variable "db_type" {
-  type = string
+  type        = string
   description = "Valid Values are: RDS/Aurora or Serverless"
 }
 
 variable "allow_security_group_ids" {
-  type = list
+  type        = list(any)
   description = "List of Security Group IDs to allow connection to this DB"
-  default = []
+  default     = []
 }
 
 variable "allow_cidrs" {
-  type = list
-  default = []
+  type        = list(any)
+  default     = []
   description = "List of CIDRs to allow connection to this DB"
 }
 
 variable "user" {
-  type = string
+  type        = string
   description = "DB User"
 }
 
 variable "retention" {
-  type = number
+  type        = number
   description = "Snapshot retention period in days"
 }
 
@@ -44,7 +44,7 @@ variable "engine" {
 }
 
 variable "engine_version" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -57,52 +57,52 @@ variable "parameter_group_name" {
 }
 
 variable "apply_immediately" {
-  type = bool
+  type    = bool
   default = true
 }
 
-variable "skip_final_snapshot"{
-  type = bool
+variable "skip_final_snapshot" {
+  type    = bool
   default = false
 }
 
 
 variable "snapshot_identifier" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "identifier" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "database_name" {
   description = "Database Name"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 
 variable "allocated_storage" {
-  type = number
+  type        = number
   description = "Storage size in GB"
-  default = null
+  default     = null
 }
 
 variable "storage_encrypted" {
-  type = bool
+  type        = bool
   description = "Enables storage encryption"
 }
 
 variable "kms_key_arn" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "KMS Key ARN to use a CMK instead of default shared key, when storage_encrypted is true"
 }
 
 variable "backup" {
-  type = bool
+  type        = bool
   description = "Enables automatic backup with AWS Backup"
 }
 
@@ -112,18 +112,18 @@ variable "vpc_id" {
 
 variable "db_subnet_group_id" {
   description = "RDS Subnet Group Name"
-  type = string
+  type        = string
 }
 
 
 variable "db_subnet_group_subnet_ids" {
-  type = list
+  type        = list(any)
   description = "List of Subnet IDs for the RDS Subnet Group"
-  default = []
+  default     = []
 }
 
 variable "preferred_backup_window" {
   description = "Preferred Backup Window"
-  type = string
-  default = "07:00-09:00"
+  type        = string
+  default     = "07:00-09:00"
 }
