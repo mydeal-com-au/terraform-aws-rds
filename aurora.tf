@@ -11,6 +11,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   preferred_backup_window = var.preferred_backup_window
   snapshot_identifier     = var.snapshot_identifier != "" ? var.snapshot_identifier : null
   db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.id
+  iam_database_authentication_enabled = var.iam_database_authentication_enabled
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {

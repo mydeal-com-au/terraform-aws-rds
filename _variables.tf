@@ -13,6 +13,11 @@ variable "db_type" {
   description = "Valid Values are: RDS/Aurora or Serverless"
 }
 
+variable "iam_database_authentication_enabled" {
+  type        = bool
+  default = false
+}
+
 variable "allow_security_group_ids" {
   type        = list(any)
   description = "List of Security Group IDs to allow connection to this DB"
