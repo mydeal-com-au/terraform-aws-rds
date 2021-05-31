@@ -4,13 +4,13 @@ resource "aws_rds_cluster" "aurora_cluster" {
   engine             = var.engine
   engine_version     = var.engine_version
   #availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
-  database_name           = var.database_name
-  master_username         = var.user
-  master_password         = random_string.rds_db_password.result
-  backup_retention_period = var.retention
-  preferred_backup_window = var.preferred_backup_window
-  snapshot_identifier     = var.snapshot_identifier != "" ? var.snapshot_identifier : null
-  db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.id
+  database_name                       = var.database_name
+  master_username                     = var.user
+  master_password                     = random_string.rds_db_password.result
+  backup_retention_period             = var.retention
+  preferred_backup_window             = var.preferred_backup_window
+  snapshot_identifier                 = var.snapshot_identifier != "" ? var.snapshot_identifier : null
+  db_subnet_group_name                = aws_db_subnet_group.rds_subnet_group.id
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
 }
 

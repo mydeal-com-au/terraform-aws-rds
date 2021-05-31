@@ -14,7 +14,7 @@ variable "db_type" {
 }
 
 variable "iam_database_authentication_enabled" {
-  type        = bool
+  type    = bool
   default = false
 }
 
