@@ -1,7 +1,7 @@
 
 resource "aws_security_group" "rds_db" {
-  name     = "rds-${var.environment_name}-${var.name}"
-  vpc_id   = var.vpc_id
+  name   = "rds-${var.environment_name}-${var.name}"
+  vpc_id = var.vpc_id
 
   lifecycle {
     create_before_destroy = true
