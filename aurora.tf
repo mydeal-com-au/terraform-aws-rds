@@ -15,7 +15,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  count              = var.db_type == "aurora" ? 2 : 0
+  count              = var.db_type == "aurora" ? var.count_aurora_instances : 0
   identifier         = "${var.identifier}-${count.index}"
   cluster_identifier = aws_rds_cluster.aurora_cluster[0].id
   instance_class     = var.instance_class
