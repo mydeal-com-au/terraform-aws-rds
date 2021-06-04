@@ -132,3 +132,9 @@ variable "preferred_backup_window" {
   type        = string
   default     = "07:00-09:00"
 }
+
+variable "count_aurora_instances" {
+  description = "Number of Aurora Instances"
+  type        = number
+  default     = "1"
+}
