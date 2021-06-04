@@ -27,6 +27,7 @@
 | allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | `list(any)` | `[]` | no |
 | apply\_immediately | n/a | `bool` | `true` | no |
 | backup | Enables automatic backup with AWS Backup | `bool` | n/a | yes |
+| count\_aurora\_instances | Number of Aurora Instances | `number` | `"1"` | no |
 | database\_name | Database Name | `string` | `""` | no |
 | db\_subnet\_group\_id | RDS Subnet Group Name | `string` | n/a | yes |
 | db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list(any)` | `[]` | no |
