@@ -29,3 +29,12 @@ resource "aws_security_group_rule" "rds_db_inbound_ecs" {
   security_group_id        = aws_security_group.rds_db.id
   description              = "From ECS Nodes"
 }
+
+  resource "aws_security_group_rule" "egress_rule" {
+  type              = "egress"
+  from_port         = var.port
+  to_port           = var.port
+  protocol          = "tcp"
+  security_group_id = aws_security_group.rds_db.id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
