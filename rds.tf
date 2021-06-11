@@ -12,12 +12,12 @@ resource "aws_db_instance" "rds_db" {
   instance_class          = var.instance_class
   name                    = var.name
   backup_retention_period = var.retention
-  identifier              = var.identifier
+  identifier              = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   username                = var.user
   password                = random_string.rds_db_password.result
   parameter_group_name    = var.parameter_group_name
   db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.id
-  vpc_security_group_ids  = tolist(aws_security_group.rds_db.id)
+  vpc_security_group_ids  = [aws_security_group.rds_db.id]
   apply_immediately       = var.apply_immediately
   skip_final_snapshot     = var.skip_final_snapshot
   snapshot_identifier     = var.snapshot_identifier != "" ? var.snapshot_identifier : null

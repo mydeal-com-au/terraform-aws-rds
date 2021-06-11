@@ -10,7 +10,7 @@ variable "environment_name" {
 
 variable "db_type" {
   type        = string
-  description = "Valid Values are: RDS/Aurora or Serverless"
+  description = "Valid values are: rds, aurora or serverless"
 }
 
 variable "iam_database_authentication_enabled" {
@@ -19,13 +19,13 @@ variable "iam_database_authentication_enabled" {
 }
 
 variable "allow_security_group_ids" {
-  type        = list(any)
+  type        = list(string)
   description = "List of Security Group IDs to allow connection to this DB"
   default     = []
 }
 
 variable "allow_cidrs" {
-  type        = list(any)
+  type        = list(string)
   default     = []
   description = "List of CIDRs to allow connection to this DB"
 }
@@ -55,31 +55,37 @@ variable "engine_version" {
 
 variable "port" {
   type = number
+  description = "Port number for this DB (usually 3306 for MySQL and 5432 for Postgres)"
 }
 
 variable "parameter_group_name" {
   type = string
+  description = "Parameter group name for this DB"
 }
 
 variable "apply_immediately" {
   type    = bool
   default = true
+  description = "Apply changes immediately or wait for the maintainance window"
 }
 
 variable "skip_final_snapshot" {
   type    = bool
   default = false
+  description = "Skips the final snapshot if the database is destroyed programatically"
 }
 
 
 variable "snapshot_identifier" {
   type    = string
   default = ""
+  description = "Pass a snapshot identifier for the database to be created from this snapshot"
 }
 
 variable "identifier" {
   type    = string
   default = ""
+  description = "Optional identifier for DB. If not passed, {environment_name}-{name} will be used"
 }
 
 variable "database_name" {
