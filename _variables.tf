@@ -54,37 +54,37 @@ variable "engine_version" {
 }
 
 variable "port" {
-  type = number
+  type        = number
   description = "Port number for this DB (usually 3306 for MySQL and 5432 for Postgres)"
 }
 
 variable "parameter_group_name" {
-  type = string
+  type        = string
   description = "Parameter group name for this DB"
 }
 
 variable "apply_immediately" {
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
   description = "Apply changes immediately or wait for the maintainance window"
 }
 
 variable "skip_final_snapshot" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Skips the final snapshot if the database is destroyed programatically"
 }
 
 
 variable "snapshot_identifier" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Pass a snapshot identifier for the database to be created from this snapshot"
 }
 
 variable "identifier" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Optional identifier for DB. If not passed, {environment_name}-{name} will be used"
 }
 
@@ -121,11 +121,15 @@ variable "vpc_id" {
   type = string
 }
 
+variable "create_db_subnet_group" {
+  description = "Create a Subnet group?"
+  default     = false
+}
+
 variable "db_subnet_group_id" {
   description = "RDS Subnet Group Name"
   type        = string
 }
-
 
 variable "db_subnet_group_subnet_ids" {
   type        = list(any)

@@ -16,7 +16,7 @@ resource "aws_db_instance" "rds_db" {
   username                = var.user
   password                = random_string.rds_db_password.result
   parameter_group_name    = var.parameter_group_name
-  db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.id
+  db_subnet_group_name    = try(aws_db_subnet_group.rds_subnet_group[0].id, var.db_subnet_group_id)
   vpc_security_group_ids  = [aws_security_group.rds_db.id]
   apply_immediately       = var.apply_immediately
   skip_final_snapshot     = var.skip_final_snapshot
@@ -25,14 +25,5 @@ resource "aws_db_instance" "rds_db" {
   storage_encrypted       = var.storage_encrypted
   tags = {
     Backup = var.backup
-  }
-}
-
-resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = var.db_subnet_group_id
-  subnet_ids = var.db_subnet_group_subnet_ids
-
-  tags = {
-    Name = var.db_subnet_group_id
   }
 }
