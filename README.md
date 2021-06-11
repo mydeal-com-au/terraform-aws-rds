@@ -28,6 +28,7 @@
 | apply\_immediately | Apply changes immediately or wait for the maintainance window | `bool` | `true` | no |
 | backup | Enables automatic backup with AWS Backup | `bool` | n/a | yes |
 | count\_aurora\_instances | Number of Aurora Instances | `number` | `"1"` | no |
+| create\_db\_subnet\_group | Create a Subnet group? | `bool` | `false` | no |
 | database\_name | Database Name | `string` | `""` | no |
 | db\_subnet\_group\_id | RDS Subnet Group Name | `string` | n/a | yes |
 | db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list(any)` | `[]` | no |
