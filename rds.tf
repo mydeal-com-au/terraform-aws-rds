@@ -15,7 +15,6 @@ resource "aws_db_instance" "rds_db" {
   identifier              = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   username                = var.user
   password                = random_string.rds_db_password.result
-  parameter_group_name    = var.parameter_group_name
   db_subnet_group_name    = try(aws_db_subnet_group.rds_subnet_group[0].id, var.db_subnet_group_id)
   vpc_security_group_ids  = [aws_security_group.rds_db.id]
   apply_immediately       = var.apply_immediately
@@ -23,7 +22,36 @@ resource "aws_db_instance" "rds_db" {
   snapshot_identifier     = var.snapshot_identifier != "" ? var.snapshot_identifier : null
   kms_key_id              = var.kms_key_arn
   storage_encrypted       = var.storage_encrypted
+  parameter_group_name    = var.create_db_parameter_group == true ? aws_db_parameter_group.rds_custom_db_pg[count.index].name : ""
+
   tags = {
     Backup = var.backup
+  }
+}
+
+
+resource "aws_db_parameter_group" "rds_custom_db_pg" {
+  count = var.create_db_parameter_group ? 1 : 0
+
+  name = var.parameter_group_name
+  #name_prefix = local.name_prefix
+  description = var.parameter_group_description
+  family      = var.family
+
+  dynamic "parameter" {
+    for_each = var.db_parameters
+    content {
+      name         = parameter.value.name
+      value        = parameter.value.value
+      apply_method = lookup(parameter.value, "apply_method", null)
+    }
+  }
+
+  tags = {
+    "Name" = var.parameter_group_name
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }

@@ -23,7 +23,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   instance_class          = var.instance_class
   engine                  = aws_rds_cluster.aurora_cluster[0].engine
   engine_version          = aws_rds_cluster.aurora_cluster[0].engine_version
-  db_parameter_group_name = var.create_db_parameter_group == true ? aws_db_parameter_group.custom_db_pg[count.index].name : ""
+  db_parameter_group_name = var.create_db_parameter_group == true ? aws_db_parameter_group.aurora_custom_db_pg[count.index].name : ""
 
 }
 
@@ -46,11 +46,11 @@ resource "aws_rds_cluster_parameter_group" "custom_cluster_pg" {
 
 }
 
-resource "aws_db_parameter_group" "custom_db_pg" {
+resource "aws_db_parameter_group" "aurora_custom_db_pg" {
   count = var.create_db_parameter_group ? 1 : 0
 
-  name = var.parameter_group_name
-  #name_prefix = local.name_prefix
+  #name = var.parameter_group_name
+  name_prefix = var.parameter_group_name
   description = var.parameter_group_description
   family      = var.family
 
