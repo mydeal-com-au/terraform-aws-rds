@@ -23,6 +23,7 @@ resource "aws_db_instance" "rds_db" {
   kms_key_id              = var.kms_key_arn
   storage_encrypted       = var.storage_encrypted
   parameter_group_name    = var.create_db_parameter_group == true ? aws_db_parameter_group.rds_custom_db_pg[count.index].name : ""
+  deletion_protection     = var.deletion_protection
 
   tags = {
     Backup = var.backup
