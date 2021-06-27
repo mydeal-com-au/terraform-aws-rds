@@ -23,12 +23,12 @@ resource "aws_ssm_parameter" "rds_endpoint" {
   value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].endpoint : aws_rds_cluster.aurora_cluster[0].endpoint
 }
 
-#resource "aws_ssm_parameter" "rds_db_address" {
-#  name        = "/rds/${var.environment_name}-${var.name}/HOST"
-#  description = "RDS Hostname"
-#  type        = "String"
-#  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].address : aws_rds_cluster.aurora_cluster[0].address
-#}
+resource "aws_ssm_parameter" "rds_db_address" {
+  name        = "/rds/${var.environment_name}-${var.name}/HOST"
+  description = "RDS Hostname"
+  type        = "String"
+  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].address : aws_rds_cluster.aurora_cluster[0].address
+}
 
 resource "aws_ssm_parameter" "rds_db_name" {
   name        = "/rds/${var.environment_name}-${var.name}/NAME"
