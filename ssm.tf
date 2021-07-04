@@ -29,7 +29,7 @@ resource "aws_ssm_parameter" "rds_reader_endpoint" {
   name        = "/rds/${var.environment_name}-${var.name}/READER_ENDPOINT"
   description = "RDS Reader Endpoint"
   type        = "String"
-  value       =  aws_rds_cluster.aurora_cluster[0].reader_endpoint
+  value       = aws_rds_cluster.aurora_cluster[0].reader_endpoint
 }
 
 resource "aws_ssm_parameter" "rds_db_address" {
