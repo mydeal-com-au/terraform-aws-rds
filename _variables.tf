@@ -241,3 +241,24 @@ variable "deletion_protection" {
   type        = bool
   default     = false
 }
+
+
+variable "multi_az" {
+  description = "Deploy multi-az instance database"
+  type        = bool
+  default     = false  
+}
+
+
+variable "performance_insights_enabled" {
+  description = "Enable performance insights on instance"
+  type        = bool
+  default     = false  
+}
+
+
+variable "max_allocated_storage" {
+  type        = number
+  description = "Argument higher than the allocated_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling"
+  default     = 0
+}

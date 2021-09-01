@@ -9,5 +9,3 @@ output "identifier" {
 output "rds_sg" {
   value = aws_security_group.rds_db.id
 }
-
-
