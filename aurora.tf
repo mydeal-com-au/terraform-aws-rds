@@ -1,8 +1,8 @@
 resource "aws_rds_cluster" "aurora_cluster" {
-  count              = var.db_type == "aurora" ? 1 : 0
-  cluster_identifier = var.identifier
-  engine             = var.engine
-  engine_version     = var.engine_version
+  count                               = var.db_type == "aurora" ? 1 : 0
+  cluster_identifier                  = var.identifier
+  engine                              = var.engine
+  engine_version                      = var.engine_version
   database_name                       = var.database_name
   master_username                     = var.user
   master_password                     = random_string.rds_db_password.result

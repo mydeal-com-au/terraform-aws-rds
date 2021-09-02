@@ -246,14 +246,14 @@ variable "deletion_protection" {
 variable "multi_az" {
   description = "Deploy multi-az instance database"
   type        = bool
-  default     = false  
+  default     = false
 }
 
 
 variable "performance_insights_enabled" {
   description = "Enable performance insights on instance"
   type        = bool
-  default     = false  
+  default     = false
 }
 
 
