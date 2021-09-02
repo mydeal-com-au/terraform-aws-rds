@@ -11,7 +11,7 @@ resource "aws_db_instance" "rds_db" {
   engine                  = var.engine
   engine_version          = var.engine_version
   instance_class          = var.instance_class
-  name                    = var.name
+  name                    = var.database_name
   backup_retention_period = var.retention
   identifier              = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   username                = var.user
