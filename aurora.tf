@@ -3,7 +3,6 @@ resource "aws_rds_cluster" "aurora_cluster" {
   cluster_identifier = var.identifier
   engine             = var.engine
   engine_version     = var.engine_version
-  #availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]
   database_name                       = var.database_name
   master_username                     = var.user
   master_password                     = random_string.rds_db_password.result
@@ -28,7 +27,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
 }
 
 resource "aws_rds_cluster_parameter_group" "custom_cluster_pg" {
-  count = var.create_cluster_parameter_group ? 1 : 0
+  count = var.db_type == "aurora" && var.create_cluster_parameter_group ? 1 : 0
 
   name = var.parameter_group_name
   #name_prefix = local.name_prefix
@@ -47,7 +46,7 @@ resource "aws_rds_cluster_parameter_group" "custom_cluster_pg" {
 }
 
 resource "aws_db_parameter_group" "aurora_custom_db_pg" {
-  count = var.create_db_parameter_group ? 1 : 0
+  count = var.db_type == "aurora" && var.create_db_parameter_group ? 1 : 0
 
   #name = var.parameter_group_name
   name_prefix = var.parameter_group_name
