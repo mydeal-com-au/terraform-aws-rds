@@ -189,7 +189,7 @@ variable "parameter_group_name" {
 variable "parameter_group_description" {
   description = "The description of the DB parameter group"
   type        = string
-  default     = ""
+  default     = "Managed by Terraform"
 }
 
 variable "family" {
@@ -220,7 +220,7 @@ variable "option_group_use_name_prefix" {
 variable "option_group_description" {
   description = "The description of the option group"
   type        = string
-  default     = ""
+  default     = "Managed by Terraform"
 }
 
 variable "major_engine_version" {
