@@ -48,13 +48,16 @@
 | instance\_class | n/a | `string` | n/a | yes |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
 | major\_engine\_version | Specifies the major version of the engine that this option group should be associated with | `string` | `""` | no |
+| max\_allocated\_storage | Argument higher than the allocated\_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling | `number` | `0` | no |
+| multi\_az | Deploy multi-az instance database | `bool` | `false` | no |
 | name | Name of this RDS Database | `string` | n/a | yes |
-| option\_group\_description | The description of the option group | `string` | `""` | no |
+| option\_group\_description | The description of the option group | `string` | `"Managed by Terraform"` | no |
 | option\_group\_name | Name of the option group | `string` | `null` | no |
 | option\_group\_use\_name\_prefix | Determines whether to use `option_group_name` as is or create a unique name beginning with the `option_group_name` as the prefix | `bool` | `true` | no |
 | options | A list of Options to apply. | `any` | `[]` | no |
-| parameter\_group\_description | The description of the DB parameter group | `string` | `""` | no |
+| parameter\_group\_description | The description of the DB parameter group | `string` | `"Managed by Terraform"` | no |
 | parameter\_group\_name | Name of the DB parameter group to associate or create | `string` | `null` | no |
+| performance\_insights\_enabled | Enable performance insights on instance | `bool` | `false` | no |
 | port | Port number for this DB (usually 3306 for MySQL and 5432 for Postgres) | `number` | n/a | yes |
 | preferred\_backup\_window | Preferred Backup Window | `string` | `"07:00-09:00"` | no |
 | retention | Snapshot retention period in days | `number` | n/a | yes |
