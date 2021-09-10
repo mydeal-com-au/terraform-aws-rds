@@ -189,7 +189,7 @@ variable "parameter_group_name" {
 variable "parameter_group_description" {
   description = "The description of the DB parameter group"
   type        = string
-  default     = ""
+  default     = "Managed by Terraform"
 }
 
 variable "family" {
@@ -220,7 +220,7 @@ variable "option_group_use_name_prefix" {
 variable "option_group_description" {
   description = "The description of the option group"
   type        = string
-  default     = ""
+  default     = "Managed by Terraform"
 }
 
 variable "major_engine_version" {
@@ -240,4 +240,25 @@ variable "deletion_protection" {
   description = "The database can't be deleted when this value is set to true."
   type        = bool
   default     = false
+}
+
+
+variable "multi_az" {
+  description = "Deploy multi-az instance database"
+  type        = bool
+  default     = false
+}
+
+
+variable "performance_insights_enabled" {
+  description = "Enable performance insights on instance"
+  type        = bool
+  default     = false
+}
+
+
+variable "max_allocated_storage" {
+  type        = number
+  description = "Argument higher than the allocated_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling"
+  default     = 0
 }

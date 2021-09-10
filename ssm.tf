@@ -40,6 +40,7 @@ resource "aws_ssm_parameter" "rds_db_address" {
 }
 
 resource "aws_ssm_parameter" "rds_db_name" {
+  count       = var.database_name == "" ? 0 : 1
   name        = "/rds/${var.environment_name}-${var.name}/NAME"
   description = "RDS DB Name"
   type        = "String"
