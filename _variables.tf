@@ -262,3 +262,9 @@ variable "max_allocated_storage" {
   description = "Argument higher than the allocated_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling"
   default     = 0
 }
+
+variable "secret_method" {
+  description = "Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager"
+  type        = string
+  default     = "ssm"
+}
