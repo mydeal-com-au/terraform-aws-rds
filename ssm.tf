@@ -1,4 +1,5 @@
 resource "aws_ssm_parameter" "rds_db_password" {
+  count       = var.secret_method == "ssm" ? 1 : 0
   name        = "/rds/${var.environment_name}-${var.name}/PASSWORD"
   description = "RDS Password"
   type        = "SecureString"
@@ -10,6 +11,7 @@ resource "aws_ssm_parameter" "rds_db_password" {
 }
 
 resource "aws_ssm_parameter" "rds_db_user" {
+  count       = var.secret_method == "ssm" ? 1 : 0
   name        = "/rds/${var.environment_name}-${var.name}/USER"
   description = "RDS User"
   type        = "SecureString"
