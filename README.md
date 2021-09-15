@@ -61,6 +61,7 @@
 | port | Port number for this DB (usually 3306 for MySQL and 5432 for Postgres) | `number` | n/a | yes |
 | preferred\_backup\_window | Preferred Backup Window | `string` | `"07:00-09:00"` | no |
 | retention | Snapshot retention period in days | `number` | n/a | yes |
+| secret\_method | Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager | `string` | `"ssm"` | no |
 | skip\_final\_snapshot | Skips the final snapshot if the database is destroyed programatically | `bool` | `false` | no |
 | snapshot\_identifier | Pass a snapshot identifier for the database to be created from this snapshot | `string` | `""` | no |
 | storage\_encrypted | Enables storage encryption | `bool` | n/a | yes |
