@@ -13,10 +13,11 @@ locals {
     port            = var.db_type == "rds" ? aws_db_instance.rds_db[0].port : aws_rds_cluster.aurora_cluster[0].port
     identifier      = var.db_type == "rds" ? aws_db_instance.rds_db[0].name : aws_rds_cluster.aurora_cluster[0].cluster_identifier
     engine          = var.db_type == "rds" ? aws_db_instance.rds_db[0].engine : aws_rds_cluster.aurora_cluster[0].engine
-    reader_endpoint = var.db_type == "aurora" ? aws_rds_cluster.aurora_cluster[0].reader_endpoint: "null"
+    reader_endpoint = var.db_type == "aurora" ? aws_rds_cluster.aurora_cluster[0].reader_endpoint : "null"
   }
+  rds_secret = local.secrets
 
-rds_secret = local.secrets
+
 }
 
 
