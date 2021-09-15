@@ -60,9 +60,9 @@ The process described here has several goals:
 2. Increase the version numbers in any examples files and the README.md to the new version that this
    Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
 3. You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
-4. Follow all instructions in [the template](./.github/pull_request_template.md)
-5. Follow the [styleguides](https://github.com/jonbrouse/terraform-style-guide/blob/master/README.md)
-6. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>
+4. Follow all instructions in [the template](./.github/pull_request_template.md).
+5. Follow the [styleguides](https://docs.dnx.one/docs/style-guide/terraform-style-guide.html).
+6. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing. <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>
 
 While the prerequisites above must be satisfied prior to have your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
@@ -70,7 +70,7 @@ While the prerequisites above must be satisfied prior to have your pull request 
 
 Unsure where to begin contributing to DNX? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [Beginner issues][beginner] - issues that should only require a few lines of code, and a test or two.
-* [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
+* `beginner` - issues that should only require a few lines of code, and a test or two.
+* `help-wanted` - issues which should be a bit more involved than `beginner` issues.
 
 Both issue lists are sorted by the total number of comments. While not perfect, the number of comments is a reasonable proxy for the impact a given change will have.
