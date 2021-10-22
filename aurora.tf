@@ -1,6 +1,6 @@
 resource "aws_rds_cluster" "aurora_cluster" {
   count                               = var.db_type == "aurora" ? 1 : 0
-  cluster_identifier                  = var.identifier
+  cluster_identifier                  = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   engine                              = var.engine
   engine_version                      = var.engine_version
   database_name                       = var.database_name
@@ -17,7 +17,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
   count                   = var.db_type == "aurora" ? var.count_aurora_instances : 0
-  identifier              = "${var.identifier}-${count.index}"
+  identifier              = var.identifier == "" ? "${var.environment_name}-${var.name}-${count.index}" : "${var.identifier}-${count.index}"
   cluster_identifier      = aws_rds_cluster.aurora_cluster[0].id
   instance_class          = var.instance_class
   engine                  = aws_rds_cluster.aurora_cluster[0].engine

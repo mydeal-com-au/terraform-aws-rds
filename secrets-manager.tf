@@ -1,6 +1,6 @@
 resource "aws_secretsmanager_secret" "rds" {
   count                   = var.secret_method == "secretsmanager" ? 1 : 0
-  name                    = "/rds/${var.environment_name}-${var.identifier}"
+  name                    = var.identifier == "" ? "/rds/${var.environment_name}-${var.name}" : "/rds/${var.identifier}"
   recovery_window_in_days = 0
 }
 
@@ -16,14 +16,10 @@ locals {
     reader_endpoint = var.db_type == "aurora" ? aws_rds_cluster.aurora_cluster[0].reader_endpoint : "null"
   }
   rds_secret = local.secrets
-
-
 }
-
 
 resource "aws_secretsmanager_secret_version" "rds" {
   count         = var.secret_method == "secretsmanager" ? 1 : 0
   secret_id     = aws_secretsmanager_secret.rds[0].id
   secret_string = jsonencode(local.rds_secret)
-
 }
