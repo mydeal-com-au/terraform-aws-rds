@@ -30,7 +30,7 @@
 | cluster\_parameters | A list of Cluster parameters (map) to apply | `list(map(string))` | `[]` | no |
 | count\_aurora\_instances | Number of Aurora Instances | `number` | `"1"` | no |
 | create\_cluster\_parameter\_group | Whether to create a cluster parameter group | `bool` | `false` | no |
-| create\_db\_option\_group | (Optional) Create a database option group | `bool` | `true` | no |
+| create\_db\_option\_group | (Optional) Create a database option group | `bool` | `false` | no |
 | create\_db\_parameter\_group | Whether to create a database parameter group | `bool` | `false` | no |
 | create\_db\_subnet\_group | Create a Subnet group? | `bool` | `false` | no |
 | database\_name | Database Name | `string` | `""` | no |
@@ -39,6 +39,7 @@
 | db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list(any)` | `[]` | no |
 | db\_type | Valid values are: rds, aurora or serverless | `string` | n/a | yes |
 | deletion\_protection | The database can't be deleted when this value is set to true. | `bool` | `false` | no |
+| enabled\_cloudwatch\_logs\_exports | (Optional) Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine) | `any` | `null` | no |
 | engine | n/a | `string` | n/a | yes |
 | engine\_version | n/a | `string` | `""` | no |
 | environment\_name | Environment name to use as a prefix to this DB | `string` | n/a | yes |
@@ -54,12 +55,14 @@
 | option\_group\_description | The description of the option group | `string` | `"Managed by Terraform"` | no |
 | option\_group\_name | Name of the option group | `string` | `null` | no |
 | option\_group\_use\_name\_prefix | Determines whether to use `option_group_name` as is or create a unique name beginning with the `option_group_name` as the prefix | `bool` | `true` | no |
+| option\_name | (Required) The Name of the Option | `string` | `""` | no |
 | options | A list of Options to apply. | `any` | `[]` | no |
 | parameter\_group\_description | The description of the DB parameter group | `string` | `"Managed by Terraform"` | no |
 | parameter\_group\_name | Name of the DB parameter group to associate or create | `string` | `null` | no |
 | performance\_insights\_enabled | Enable performance insights on instance | `bool` | `false` | no |
 | port | Port number for this DB (usually 3306 for MySQL and 5432 for Postgres) | `number` | n/a | yes |
 | preferred\_backup\_window | Preferred Backup Window | `string` | `"07:00-09:00"` | no |
+| publicly\_accessible | (Optional) Bool to control if instance is publicly accessible | `bool` | `false` | no |
 | retention | Snapshot retention period in days | `number` | n/a | yes |
 | secret\_method | Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager | `string` | `"ssm"` | no |
 | skip\_final\_snapshot | Skips the final snapshot if the database is destroyed programatically | `bool` | `false` | no |

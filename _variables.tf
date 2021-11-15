@@ -202,7 +202,7 @@ variable "family" {
 variable "create_db_option_group" {
   description = "(Optional) Create a database option group"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "option_group_name" {
@@ -267,4 +267,21 @@ variable "secret_method" {
   description = "Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager"
   type        = string
   default     = "ssm"
+}
+
+variable "enabled_cloudwatch_logs_exports" {
+  description = "(Optional) Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine)"
+  default     = null
+}
+
+variable "option_name" {
+  description = "(Required) The Name of the Option"
+  type        = string
+  default     = ""
+}
+
+variable "publicly_accessible" {
+  description = "(Optional) Bool to control if instance is publicly accessible"
+  type        = bool
+  default     = false
 }
