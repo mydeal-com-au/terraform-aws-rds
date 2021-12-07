@@ -287,7 +287,7 @@ variable "publicly_accessible" {
 }
 
 variable "license_model" {
-  description = "License Model"
+  description = "License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server)"
   type        = string
   default     = ""
 }
