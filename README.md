@@ -48,6 +48,7 @@
 | identifier | Optional identifier for DB. If not passed, {environment\_name}-{name} will be used | `string` | `""` | no |
 | instance\_class | n/a | `string` | n/a | yes |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
+| license\_model | License Model | `string` | `""` | no |
 | major\_engine\_version | Specifies the major version of the engine that this option group should be associated with | `string` | `""` | no |
 | max\_allocated\_storage | Argument higher than the allocated\_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling | `number` | `0` | no |
 | multi\_az | Deploy multi-az instance database | `bool` | `false` | no |
