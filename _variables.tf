@@ -285,3 +285,9 @@ variable "publicly_accessible" {
   type        = bool
   default     = false
 }
+
+variable "license_model" {
+  description = "License Model"
+  type        = string
+  default     = ""
+}
