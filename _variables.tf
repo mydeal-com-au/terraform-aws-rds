@@ -285,3 +285,9 @@ variable "publicly_accessible" {
   type        = bool
   default     = false
 }
+
+variable "monitoring_interval" {
+  type        = number
+  description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance"
+  default     = 0
+}
