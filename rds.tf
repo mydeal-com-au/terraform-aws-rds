@@ -95,7 +95,7 @@ resource "aws_db_option_group" "rds_custom_db_og" {
 resource "aws_iam_role" "rds_monitoring" {
   count = var.monitoring_interval > 0 ? 1 : 0
 
-  name                = "rds-${var.database_name}-enhanced-monitoring"
+  name                = "rds-${var.name}-enhanced-monitoring"
   managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"]
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
