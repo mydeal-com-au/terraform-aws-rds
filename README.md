@@ -51,6 +51,7 @@
 | license\_model | License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server) | `string` | `""` | no |
 | major\_engine\_version | Specifies the major version of the engine that this option group should be associated with | `string` | `""` | no |
 | max\_allocated\_storage | Argument higher than the allocated\_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling | `number` | `0` | no |
+| monitoring\_interval | The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance | `number` | `0` | no |
 | multi\_az | Deploy multi-az instance database | `bool` | `false` | no |
 | name | Name of this RDS Database | `string` | n/a | yes |
 | option\_group\_description | The description of the option group | `string` | `"Managed by Terraform"` | no |

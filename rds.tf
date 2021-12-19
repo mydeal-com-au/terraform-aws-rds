@@ -31,6 +31,8 @@ resource "aws_db_instance" "rds_db" {
   deletion_protection             = var.deletion_protection
   performance_insights_enabled    = var.performance_insights_enabled
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
+  monitoring_interval             = var.monitoring_interval
+  monitoring_role_arn             = var.monitoring_interval > 0 ? aws_iam_role.rds_monitoring[count.index].arn : ""
 
   tags = {
     Backup = var.backup
@@ -89,4 +91,24 @@ resource "aws_db_option_group" "rds_custom_db_og" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "aws_iam_role" "rds_monitoring" {
+  count = var.monitoring_interval > 0 ? 1 : 0
+
+  name                = "rds-${var.name}-enhanced-monitoring"
+  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"]
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "monitoring.rds.amazonaws.com"
+        }
+      },
+    ]
+  })
 }
