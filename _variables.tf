@@ -286,6 +286,11 @@ variable "publicly_accessible" {
   default     = false
 }
 
+variable "license_model" {
+  description = "License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server)"
+  type        = string
+  default     = null
+}
 variable "monitoring_interval" {
   type        = number
   description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance"
