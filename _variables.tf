@@ -138,7 +138,7 @@ variable "db_subnet_group_subnet_ids" {
 }
 
 variable "preferred_backup_window" {
-  description = "Preferred Backup Window"
+  description = "(Aurora Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
   type        = string
   default     = "07:00-09:00"
 }
@@ -295,4 +295,22 @@ variable "monitoring_interval" {
   type        = number
   description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance"
   default     = 0
+}
+
+variable "maintenance_window" {
+  type        = string
+  description = "(RDS Only) The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
+  default     = "Sun:04:00-Sun:05:00"
+}
+
+variable "backup_window" {
+  description = "(RDS Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
+  type        = string
+  default     = "03:00-03:30"
+}
+
+variable "preferred_maintenance_window" {
+  type        = string
+  description = "(Aurora Only) The weekly time range during which system maintenance can occur, in (UTC) e.g., wed:04:00-wed:04:30"
+  default     = "Sun:04:00-Sun:05:00"
 }

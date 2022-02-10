@@ -33,6 +33,8 @@ resource "aws_db_instance" "rds_db" {
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   monitoring_interval             = var.monitoring_interval
   monitoring_role_arn             = var.monitoring_interval > 0 ? aws_iam_role.rds_monitoring[count.index].arn : ""
+  maintenance_window              = var.maintenance_window
+  backup_window                   = var.backup_window
 
   tags = {
     Backup = var.backup

@@ -27,6 +27,7 @@
 | allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | `list(string)` | `[]` | no |
 | apply\_immediately | Apply changes immediately or wait for the maintainance window | `bool` | `true` | no |
 | backup | Enables automatic backup with AWS Backup | `bool` | n/a | yes |
+| backup\_window | (RDS Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance\_window | `string` | `"03:00-03:30"` | no |
 | cluster\_parameters | A list of Cluster parameters (map) to apply | `list(map(string))` | `[]` | no |
 | count\_aurora\_instances | Number of Aurora Instances | `number` | `"1"` | no |
 | create\_cluster\_parameter\_group | Whether to create a cluster parameter group | `bool` | `false` | no |
@@ -49,6 +50,7 @@
 | instance\_class | n/a | `string` | n/a | yes |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
 | license\_model | License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server) | `string` | `null` | no |
+| maintenance\_window | (RDS Only) The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00' | `string` | `"Sun:04:00-Sun:05:00"` | no |
 | major\_engine\_version | Specifies the major version of the engine that this option group should be associated with | `string` | `""` | no |
 | max\_allocated\_storage | Argument higher than the allocated\_storage to enable Storage Autoscaling, size in GB. 0 to disable Storage Autoscaling | `number` | `0` | no |
 | monitoring\_interval | The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance | `number` | `0` | no |
@@ -63,7 +65,8 @@
 | parameter\_group\_name | Name of the DB parameter group to associate or create | `string` | `null` | no |
 | performance\_insights\_enabled | Enable performance insights on instance | `bool` | `false` | no |
 | port | Port number for this DB (usually 3306 for MySQL and 5432 for Postgres) | `number` | n/a | yes |
-| preferred\_backup\_window | Preferred Backup Window | `string` | `"07:00-09:00"` | no |
+| preferred\_backup\_window | (Aurora Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance\_window | `string` | `"07:00-09:00"` | no |
+| preferred\_maintenance\_window | (Aurora Only) The weekly time range during which system maintenance can occur, in (UTC) e.g., wed:04:00-wed:04:30 | `string` | `"Sun:04:00-Sun:05:00"` | no |
 | publicly\_accessible | (Optional) Bool to control if instance is publicly accessible | `bool` | `false` | no |
 | retention | Snapshot retention period in days | `number` | n/a | yes |
 | secret\_method | Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager | `string` | `"ssm"` | no |
