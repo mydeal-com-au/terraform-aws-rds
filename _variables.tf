@@ -1,3 +1,8 @@
+locals {
+  timestamp = "${timestamp()}"
+  timestamp_sanitized = "${replace("${local.timestamp}", "/[-| |T|Z|:]/", "")}"
+}
+
 variable "name" {
   type        = string
   description = "Name of this RDS Database"
@@ -80,6 +85,12 @@ variable "snapshot_identifier" {
   type        = string
   default     = ""
   description = "Pass a snapshot identifier for the database to be created from this snapshot"
+}
+
+variable "final_snapshot_identifier" {
+  type        = string
+  default     = ""
+  description = "Pass the final snapshot identifier for the final snapshot to be created after the database is destroyed."
 }
 
 variable "identifier" {
