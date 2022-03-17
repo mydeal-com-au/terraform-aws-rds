@@ -35,7 +35,7 @@ resource "aws_db_instance" "rds_db" {
   monitoring_role_arn             = var.monitoring_interval > 0 ? aws_iam_role.rds_monitoring[count.index].arn : ""
   maintenance_window              = var.maintenance_window
   backup_window                   = var.backup_window
-  final_snapshot_identifier       = var.final_snapshot_identifier == "" ? "${var.environment_name}-${var.name}-${local.timestamp_sanitized}" : var.final_snapshot_identifier
+  final_snapshot_identifier       = var.final_snapshot_identifier == "" ? "${var.environment_name}-${var.name}-final-snapshot" : var.final_snapshot_identifier
 
   tags = {
     Backup = var.backup
