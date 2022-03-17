@@ -45,6 +45,7 @@
 | engine\_version | n/a | `string` | `""` | no |
 | environment\_name | Environment name to use as a prefix to this DB | `string` | n/a | yes |
 | family | The family of the DB parameter group | `string` | `""` | no |
+| final\_snapshot\_identifier | Pass the final snapshot identifier for the final snapshot to be created after the database is destroyed. | `string` | `""` | no |
 | iam\_database\_authentication\_enabled | n/a | `bool` | `false` | no |
 | identifier | Optional identifier for DB. If not passed, {environment\_name}-{name} will be used | `string` | `""` | no |
 | instance\_class | n/a | `string` | n/a | yes |
