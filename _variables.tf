@@ -138,7 +138,6 @@ variable "db_subnet_group_id" {
 }
 
 variable "db_subnet_group_subnet_ids" {
-  type        = list(any)
   description = "List of Subnet IDs for the RDS Subnet Group"
   default     = []
 }

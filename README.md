@@ -37,7 +37,7 @@
 | database\_name | Database Name | `string` | `""` | no |
 | db\_parameters | A list of DB parameters (map) to apply | `list(map(string))` | `[]` | no |
 | db\_subnet\_group\_id | RDS Subnet Group Name | `string` | n/a | yes |
-| db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list(any)` | `[]` | no |
+| db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list` | `[]` | no |
 | db\_type | Valid values are: rds, aurora or serverless | `string` | n/a | yes |
 | deletion\_protection | The database can't be deleted when this value is set to true. | `bool` | `false` | no |
 | enabled\_cloudwatch\_logs\_exports | (Optional) Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine) | `any` | `null` | no |

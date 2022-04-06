@@ -14,6 +14,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
   vpc_security_group_ids              = [aws_security_group.rds_db.id]
   db_cluster_parameter_group_name     = var.create_cluster_parameter_group == true ? aws_rds_cluster_parameter_group.custom_cluster_pg[count.index].name : ""
+  apply_immediately                   = var.apply_immediately
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
@@ -24,7 +25,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   engine                  = aws_rds_cluster.aurora_cluster[0].engine
   engine_version          = aws_rds_cluster.aurora_cluster[0].engine_version
   db_parameter_group_name = var.create_db_parameter_group == true ? aws_db_parameter_group.aurora_custom_db_pg[count.index].name : ""
-
+  publicly_accessible     = var.publicly_accessible
 }
 
 resource "aws_rds_cluster_parameter_group" "custom_cluster_pg" {
@@ -43,7 +44,6 @@ resource "aws_rds_cluster_parameter_group" "custom_cluster_pg" {
       apply_method = lookup(parameter.value, "apply_method", null)
     }
   }
-
 }
 
 resource "aws_db_parameter_group" "aurora_custom_db_pg" {
