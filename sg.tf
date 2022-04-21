@@ -19,15 +19,16 @@ resource "aws_security_group_rule" "rds_db_inbound_cidrs" {
   description       = "From CIDR ${join(", ", var.allow_cidrs)}"
 }
 
-resource "aws_security_group_rule" "rds_db_inbound_ecs" {
+resource "aws_security_group_rule" "rds_db_inbound_from_sg" {
   count                    = length(var.allow_security_group_ids)
+  for_each                 = { for security_group_id in var.allow_security_group_ids : security_group_id.name => security_group_id }
   type                     = "ingress"
   from_port                = var.port
   to_port                  = var.port
   protocol                 = "tcp"
-  source_security_group_id = var.allow_security_group_ids[count.index]
+  source_security_group_id = each.value.security_group_id
   security_group_id        = aws_security_group.rds_db.id
-  description              = "From ECS Nodes"
+  description              = try(each.value.description, "From ${each.value.security_group_id}")
 }
 
 resource "aws_security_group_rule" "egress_rule" {
