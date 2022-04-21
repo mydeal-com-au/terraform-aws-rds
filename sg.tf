@@ -20,7 +20,6 @@ resource "aws_security_group_rule" "rds_db_inbound_cidrs" {
 }
 
 resource "aws_security_group_rule" "rds_db_inbound_from_sg" {
-  count                    = length(var.allow_security_group_ids)
   for_each                 = { for security_group_id in var.allow_security_group_ids : security_group_id.name => security_group_id }
   type                     = "ingress"
   from_port                = var.port
