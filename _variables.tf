@@ -19,7 +19,11 @@ variable "iam_database_authentication_enabled" {
 }
 
 variable "allow_security_group_ids" {
-  type        = list(string)
+  type        = list(object({
+    security_group_id = string
+    description = string
+    name = string
+  }))
   description = "List of Security Group IDs to allow connection to this DB"
   default     = []
 }
