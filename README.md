@@ -24,7 +24,7 @@
 |------|-------------|------|---------|:--------:|
 | allocated\_storage | Storage size in GB | `number` | `null` | no |
 | allow\_cidrs | List of CIDRs to allow connection to this DB | `list(string)` | `[]` | no |
-| allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | `list(string)` | `[]` | no |
+| allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | <pre>list(object({<br>    security_group_id = string<br>    description = string<br>    name = string<br>  }))</pre> | `[]` | no |
 | apply\_immediately | Apply changes immediately or wait for the maintainance window | `bool` | `true` | no |
 | backup | Enables automatic backup with AWS Backup | `bool` | n/a | yes |
 | backup\_window | (RDS Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance\_window | `string` | `"03:00-03:30"` | no |
