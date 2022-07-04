@@ -49,7 +49,7 @@
 | iam\_database\_authentication\_enabled | n/a | `bool` | `false` | no |
 | identifier | Optional identifier for DB. If not passed, {environment\_name}-{name} will be used | `string` | `""` | no |
 | instance\_class | n/a | `string` | n/a | yes |
-| iops | The amount of provisioned IOPS. Setting this implies a storage\_type of io1 | `any` | `""` | no |
+| iops | The amount of provisioned IOPS. Setting this implies a storage\_type of io1 | `number` | `null` | no |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
 | license\_model | License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server) | `string` | `null` | no |
 | maintenance\_window | (RDS Only) The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00' | `string` | `"Sun:04:00-Sun:05:00"` | no |
