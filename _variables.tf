@@ -111,9 +111,9 @@ variable "storage_type" {
 }
 
 variable "iops" {
-  type        = any
+  type        = number
   description = "The amount of provisioned IOPS. Setting this implies a storage_type of io1"
-  default     = ""
+  default     = null
 }
 
 variable "allocated_storage" {
