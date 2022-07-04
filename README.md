@@ -24,7 +24,7 @@
 |------|-------------|------|---------|:--------:|
 | allocated\_storage | Storage size in GB | `number` | `null` | no |
 | allow\_cidrs | List of CIDRs to allow connection to this DB | `list(string)` | `[]` | no |
-| allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | <pre>list(object({<br>    security_group_id = string<br>    description = string<br>    name = string<br>  }))</pre> | `[]` | no |
+| allow\_security\_group\_ids | List of Security Group IDs to allow connection to this DB | <pre>list(object({<br>    security_group_id = string<br>    description       = string<br>    name              = string<br>  }))</pre> | `[]` | no |
 | apply\_immediately | Apply changes immediately or wait for the maintainance window | `bool` | `true` | no |
 | backup | Enables automatic backup with AWS Backup | `bool` | n/a | yes |
 | backup\_window | (RDS Only) The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance\_window | `string` | `"03:00-03:30"` | no |
@@ -49,6 +49,7 @@
 | iam\_database\_authentication\_enabled | n/a | `bool` | `false` | no |
 | identifier | Optional identifier for DB. If not passed, {environment\_name}-{name} will be used | `string` | `""` | no |
 | instance\_class | n/a | `string` | n/a | yes |
+| iops | The amount of provisioned IOPS. Setting this implies a storage\_type of io1 | `any` | `""` | no |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
 | license\_model | License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server) | `string` | `null` | no |
 | maintenance\_window | (RDS Only) The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00' | `string` | `"Sun:04:00-Sun:05:00"` | no |
@@ -74,6 +75,7 @@
 | skip\_final\_snapshot | Skips the final snapshot if the database is destroyed programatically | `bool` | `false` | no |
 | snapshot\_identifier | Pass a snapshot identifier for the database to be created from this snapshot | `string` | `""` | no |
 | storage\_encrypted | Enables storage encryption | `bool` | n/a | yes |
+| storage\_type | The instance storage type | `string` | `"gp2"` | no |
 | user | DB User | `string` | n/a | yes |
 | vpc\_id | n/a | `string` | n/a | yes |
 
