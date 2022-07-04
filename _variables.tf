@@ -104,6 +104,17 @@ variable "database_name" {
   default     = ""
 }
 
+variable "storage_type" {
+  type        = string
+  description = "The instance storage type"
+  default     = "gp2"
+}
+
+variable "iops" {
+  type        = any
+  description = "The amount of provisioned IOPS. Setting this implies a storage_type of io1"
+  default     = ""
+}
 
 variable "allocated_storage" {
   type        = number
