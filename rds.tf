@@ -9,7 +9,7 @@ resource "aws_db_instance" "rds_db" {
   allocated_storage               = var.allocated_storage
   max_allocated_storage           = var.max_allocated_storage
   storage_type                    = var.storage_type
-  iops                            = var.iops    
+  iops                            = var.iops
   license_model                   = var.license_model
   engine                          = var.engine
   engine_version                  = var.engine_version
