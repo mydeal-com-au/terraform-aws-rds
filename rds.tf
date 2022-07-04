@@ -39,7 +39,8 @@ resource "aws_db_instance" "rds_db" {
   final_snapshot_identifier       = var.final_snapshot_identifier == "" ? "${var.environment_name}-${var.name}-final-snapshot" : var.final_snapshot_identifier
 
   tags = {
-    Backup = var.backup
+    Backup     = var.backup
+    Identifier = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   }
 }
 
