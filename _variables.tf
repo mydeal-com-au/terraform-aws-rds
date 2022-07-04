@@ -19,10 +19,10 @@ variable "iam_database_authentication_enabled" {
 }
 
 variable "allow_security_group_ids" {
-  type        = list(object({
+  type = list(object({
     security_group_id = string
-    description = string
-    name = string
+    description       = string
+    name              = string
   }))
   description = "List of Security Group IDs to allow connection to this DB"
   default     = []
@@ -104,6 +104,17 @@ variable "database_name" {
   default     = ""
 }
 
+variable "storage_type" {
+  type        = string
+  description = "The instance storage type"
+  default     = "gp2"
+}
+
+variable "iops" {
+  type        = number
+  description = "The amount of provisioned IOPS. Setting this implies a storage_type of io1"
+  default     = null
+}
 
 variable "allocated_storage" {
   type        = number
