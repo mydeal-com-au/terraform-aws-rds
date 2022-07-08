@@ -74,6 +74,7 @@
 | secret\_method | Use ssm for SSM parameters store which is the default option, or secretsmanager for AWS Secrets Manager | `string` | `"ssm"` | no |
 | skip\_final\_snapshot | Skips the final snapshot if the database is destroyed programatically | `bool` | `false` | no |
 | snapshot\_identifier | Pass a snapshot identifier for the database to be created from this snapshot | `string` | `""` | no |
+| ssm\_kms\_key\_id | KMS Key Id to use a CMK instead of default shared key for SSM parameters | `string` | `""` | no |
 | storage\_encrypted | Enables storage encryption | `bool` | n/a | yes |
 | storage\_type | The instance storage type | `string` | `"gp2"` | no |
 | user | DB User | `string` | n/a | yes |
