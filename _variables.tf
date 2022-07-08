@@ -133,6 +133,12 @@ variable "kms_key_arn" {
   description = "KMS Key ARN to use a CMK instead of default shared key, when storage_encrypted is true"
 }
 
+variable "ssm_kms_key_arn" {
+  type        = string
+  default     = ""
+  description = "KMS Key ARN to use a CMK instead of default shared key for SSM parameters"
+}
+
 variable "backup" {
   type        = bool
   description = "Enables automatic backup with AWS Backup"
