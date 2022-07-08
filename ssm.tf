@@ -3,6 +3,7 @@ resource "aws_ssm_parameter" "rds_db_password" {
   name        = "/rds/${var.environment_name}-${var.name}/PASSWORD"
   description = "RDS Password"
   type        = "SecureString"
+  key_id      = var.ssm_kms_key_id
   value       = random_string.rds_db_password.result
 
   lifecycle {
@@ -15,6 +16,7 @@ resource "aws_ssm_parameter" "rds_db_user" {
   name        = "/rds/${var.environment_name}-${var.name}/USER"
   description = "RDS User"
   type        = "SecureString"
+  key_id      = var.ssm_kms_key_id
   value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].username : aws_rds_cluster.aurora_cluster[0].master_username
 }
 
