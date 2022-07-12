@@ -340,3 +340,9 @@ variable "preferred_maintenance_window" {
   description = "(Aurora Only) The weekly time range during which system maintenance can occur, in (UTC) e.g., wed:04:00-wed:04:30"
   default     = "Sun:04:00-Sun:05:00"
 }
+
+variable "auto_minor_version_upgrade" {
+  type        = bool
+  description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window"
+  default     = true
+}
