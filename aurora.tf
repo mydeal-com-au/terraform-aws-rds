@@ -15,6 +15,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
   vpc_security_group_ids              = [aws_security_group.rds_db.id]
   db_cluster_parameter_group_name     = var.create_cluster_parameter_group == true ? aws_rds_cluster_parameter_group.custom_cluster_pg[count.index].name : ""
   apply_immediately                   = var.apply_immediately
+  storage_encrypted                   = var.storage_encrypted
+  kms_key_id                          = var.kms_key_arn
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
