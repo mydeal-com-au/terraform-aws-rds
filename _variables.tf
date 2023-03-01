@@ -346,3 +346,15 @@ variable "auto_minor_version_upgrade" {
   description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window"
   default     = true
 }
+
+variable "enable_replica" {
+  type        = bool
+  description = "Enable read replica for RDS"
+  default     = false
+}
+
+variable "instance_class_replica" {
+  type        = string
+  description = "Define instance class for read replica"
+  default     = null
+}
