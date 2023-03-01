@@ -41,6 +41,7 @@
 | db\_subnet\_group\_subnet\_ids | List of Subnet IDs for the RDS Subnet Group | `list` | `[]` | no |
 | db\_type | Valid values are: rds, aurora or serverless | `string` | n/a | yes |
 | deletion\_protection | The database can't be deleted when this value is set to true. | `bool` | `false` | no |
+| enable\_replica | Enable read replica for RDS | `bool` | `false` | no |
 | enabled\_cloudwatch\_logs\_exports | (Optional) Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine) | `any` | `null` | no |
 | engine | n/a | `string` | n/a | yes |
 | engine\_version | n/a | `string` | `""` | no |
@@ -50,6 +51,7 @@
 | iam\_database\_authentication\_enabled | n/a | `bool` | `false` | no |
 | identifier | Optional identifier for DB. If not passed, {environment\_name}-{name} will be used | `string` | `""` | no |
 | instance\_class | n/a | `string` | n/a | yes |
+| instance\_class\_replica | Define instance class for read replica | `string` | `null` | no |
 | iops | The amount of provisioned IOPS. Setting this implies a storage\_type of io1 | `number` | `null` | no |
 | kms\_key\_arn | KMS Key ARN to use a CMK instead of default shared key, when storage\_encrypted is true | `string` | `""` | no |
 | license\_model | License model information for this DB instance (Optional, but required for some DB engines, i.e. Oracle SE1 and SQL Server) | `string` | `null` | no |
