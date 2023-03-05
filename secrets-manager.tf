@@ -11,7 +11,7 @@ locals {
     username        = var.db_type == "rds" ? aws_db_instance.rds_db[0].username : aws_rds_cluster.aurora_cluster[0].master_username
     password        = random_string.rds_db_password.result
     port            = var.db_type == "rds" ? aws_db_instance.rds_db[0].port : aws_rds_cluster.aurora_cluster[0].port
-    identifier      = var.db_type == "rds" ? aws_db_instance.rds_db[0].name : aws_rds_cluster.aurora_cluster[0].cluster_identifier
+    identifier      = var.db_type == "rds" ? aws_db_instance.rds_db[0].db_name : aws_rds_cluster.aurora_cluster[0].cluster_identifier
     engine          = var.db_type == "rds" ? aws_db_instance.rds_db[0].engine : aws_rds_cluster.aurora_cluster[0].engine
     reader_endpoint = var.db_type == "aurora" ? aws_rds_cluster.aurora_cluster[0].reader_endpoint : "null"
   }
