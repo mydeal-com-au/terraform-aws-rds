@@ -10,3 +10,7 @@ output "identifier" {
 output "rds_sg" {
   value = aws_security_group.rds_db.id
 }
+
+output "db_arn" {
+  value = var.db_type == "rds" ? aws_db_instance.rds_db[0].arn : aws_rds_cluster.aurora_cluster[0].arn
+}

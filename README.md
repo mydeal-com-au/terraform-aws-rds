@@ -87,6 +87,7 @@
 
 | Name | Description |
 |------|-------------|
+| db\_arn | n/a |
 | endpoint | n/a |
 | identifier | n/a |
 | rds\_sg | n/a |
