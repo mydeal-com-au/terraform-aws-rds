@@ -50,5 +50,5 @@ resource "aws_ssm_parameter" "rds_db_name" {
   name        = "/rds/${var.environment_name}-${var.name}/NAME"
   description = "RDS DB Name"
   type        = "String"
-  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].name : aws_rds_cluster.aurora_cluster[0].database_name
+  value       = var.db_type == "rds" ? aws_db_instance.rds_db[0].db_name : aws_rds_cluster.aurora_cluster[0].database_name
 }
