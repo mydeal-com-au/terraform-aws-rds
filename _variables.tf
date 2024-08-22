@@ -358,3 +358,9 @@ variable "instance_class_replica" {
   description = "Define instance class for read replica"
   default     = null
 }
+
+variable "domain" {
+  type        = string
+  description = "The ID of the Directory Service Active Directory domain to create the instance in"
+  default     = null
+}
