@@ -38,6 +38,8 @@ resource "aws_db_instance" "rds_db" {
   backup_window                   = var.backup_window
   final_snapshot_identifier       = var.final_snapshot_identifier == "" ? "${var.environment_name}-${var.name}-final-snapshot" : var.final_snapshot_identifier
   auto_minor_version_upgrade      = var.auto_minor_version_upgrade
+  domain                          = var.domain
+  domain_iam_role_name            = try(coalesce(var.domain, ""), "") != "" ? aws_iam_role.rds_domain[count.index].arn : ""
   tags = {
     Backup     = var.backup
     Identifier = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
@@ -116,6 +118,27 @@ resource "aws_iam_role" "rds_monitoring" {
     ]
   })
 }
+
+resource "aws_iam_role" "rds_domain" {
+  count = try(coalesce(var.domain, ""), "") != "" ? 1 : 0
+
+  name                = "rds-${var.name}-domain"
+  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonRDSDirectoryServiceAccess"]
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "rds.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
 
 resource "aws_db_instance" "rds_replica" {
   count                  = var.db_type == "rds" && var.enable_replica ? 1 : 0
