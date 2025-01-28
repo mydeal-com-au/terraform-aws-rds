@@ -44,6 +44,12 @@ resource "aws_db_instance" "rds_db" {
     Backup     = var.backup
     Identifier = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
   }
+
+  lifecycle {
+    ignore_changes = [
+      instance_class
+    ]
+  }
 }
 
 resource "aws_db_parameter_group" "rds_custom_db_pg" {
