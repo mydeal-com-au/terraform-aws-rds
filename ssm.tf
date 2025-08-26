@@ -5,10 +5,6 @@ resource "aws_ssm_parameter" "rds_db_password" {
   type        = "SecureString"
   key_id      = var.ssm_kms_key_id
   value       = random_string.rds_db_password.result
-
-  lifecycle {
-    ignore_changes = [value]
-  }
 }
 
 resource "aws_ssm_parameter" "rds_db_user" {
