@@ -96,6 +96,29 @@ resource "aws_db_option_group" "rds_custom_db_og" {
     }
   }
 
+  dynamic "option" {
+    for_each = try(var.sql_server_audit.enabled, false) ? [1] : []
+    content {
+      option_name = "SQLSERVER_AUDIT"
+      option_settings {
+        name  = "IAM_ROLE_ARN"
+        value = var.sql_server_audit.iam_role_arn
+      }
+      option_settings {
+        name  = "S3_BUCKET_ARN"
+        value = var.sql_server_audit.bucket_arn
+      }
+      option_settings {
+        name  = "ENABLE_COMPRESSION"
+        value = var.sql_server_audit.compression
+      }
+      option_settings {
+        name  = "RETENTION_TIME"
+        value = var.sql_server_audit.retention_hours
+      }
+    }
+  }
+
   tags = {
     "Name" = var.option_group_name
   }

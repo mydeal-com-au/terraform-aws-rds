@@ -364,3 +364,15 @@ variable "domain" {
   description = "The ID of the Directory Service Active Directory domain to create the instance in"
   default     = null
 }
+
+variable "sql_server_audit" {
+  type        = object({
+     enabled  = optional(bool, false)
+     iam_role_arn = optional(string, "")
+     bucket_arn = optional(string, "")
+     compression = optional(bool, true)
+     retention_hours = optional(number, 0)
+  })
+  description = "sql server audit settings"
+  default = {}
+}
