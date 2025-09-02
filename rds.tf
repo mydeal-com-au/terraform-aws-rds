@@ -85,13 +85,17 @@ resource "aws_db_option_group" "rds_custom_db_og" {
   option_group_description = var.option_group_description
   engine_name              = var.engine
   major_engine_version     = var.major_engine_version
-  option {
-    option_name = var.option_name
-    dynamic "option_settings" {
-      for_each = var.options
-      content {
-        name  = option_settings.value.name
-        value = option_settings.value.value
+  
+  dynamic "option" {
+    for_each = try(var.option_name, "") == "SQLSERVER_BACKUP_RESTORE" ? [1] : []
+    content {
+      option_name = var.option_name
+      dynamic "option_settings" {
+        for_each = var.options
+        content {
+          name  = option_settings.value.name
+          value = option_settings.value.value
+        }
       }
     }
   }
