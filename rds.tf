@@ -9,6 +9,7 @@ resource "aws_db_instance" "rds_db" {
   allocated_storage               = var.allocated_storage
   max_allocated_storage           = var.max_allocated_storage
   storage_type                    = var.storage_type
+  storage_throughput              = var.storage_type == "gp3" ? var.storage_throughput : null
   iops                            = var.iops
   license_model                   = var.license_model
   engine                          = var.engine

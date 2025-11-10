@@ -116,6 +116,12 @@ variable "iops" {
   default     = null
 }
 
+variable "storage_throughput" {
+  type        = number
+  description = "Storage throughput value for the DB instance. Applicable for gp3 storage type only"
+  default     = null
+}
+
 variable "allocated_storage" {
   type        = number
   description = "Storage size in GB"
