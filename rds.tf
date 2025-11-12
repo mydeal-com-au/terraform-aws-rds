@@ -31,7 +31,9 @@ resource "aws_db_instance" "rds_db" {
   parameter_group_name            = var.create_db_parameter_group == true ? aws_db_parameter_group.rds_custom_db_pg[count.index].name : ""
   option_group_name               = var.create_db_option_group == true ? aws_db_option_group.rds_custom_db_og[count.index].name : ""
   deletion_protection             = var.deletion_protection
+  database_insights_mode          = var.database_insights_mode
   performance_insights_enabled    = var.performance_insights_enabled
+  performance_insights_retention_period = var.performance_insights_enabled ? var.performance_insights_retention_period : null
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   monitoring_interval             = var.monitoring_interval
   monitoring_role_arn             = var.monitoring_interval > 0 ? aws_iam_role.rds_monitoring[count.index].arn : ""

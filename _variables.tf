@@ -281,6 +281,11 @@ variable "multi_az" {
   default     = false
 }
 
+variable "database_insights_mode" {
+  description = "database insights mode on instance - standard/advanced"
+  type        = string
+  default     = "standard"
+}
 
 variable "performance_insights_enabled" {
   description = "Enable performance insights on instance"
@@ -288,6 +293,11 @@ variable "performance_insights_enabled" {
   default     = false
 }
 
+variable "performance_insights_retention_period" {
+  description = "The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years) or a multiple of 31"
+  type        = number
+  default     = 7
+}
 
 variable "max_allocated_storage" {
   type        = number
