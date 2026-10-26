@@ -43,10 +43,13 @@ resource "aws_db_instance" "rds_db" {
   auto_minor_version_upgrade      = var.auto_minor_version_upgrade
   domain                          = var.domain
   domain_iam_role_name            = try(coalesce(var.domain, ""), "") != "" ? aws_iam_role.rds_domain[count.index].arn : ""
-  tags = {
-    Backup     = var.backup
-    Identifier = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
-  }
+  tags = merge(
+    var.tags,
+    {
+      Backup     = var.backup
+      Identifier = var.identifier == "" ? "${var.environment_name}-${var.name}" : var.identifier
+    }
+  )
 
   lifecycle {
     ignore_changes = [

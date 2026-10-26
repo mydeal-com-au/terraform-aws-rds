@@ -392,3 +392,9 @@ variable "sql_server_audit" {
   description = "sql server audit settings"
   default = {}
 }
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "Tags to apply to the RDS instance"
+}
